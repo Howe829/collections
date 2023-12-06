@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use collections::department;
 
 const VOWELS:[char;5] = ['a', 'e', 'i', 'o', 'u'];
 fn main() {
@@ -23,6 +24,7 @@ fn main() {
     println!("The mode of the numbers is: {}", max);
     pig_latin(&mut String::from("first"));
     pig_latin(&mut String::from("apple"));
+    department::company_department_management();
 }
 
 fn is_start_with_vowel(my_str:  &String)->bool{
@@ -36,7 +38,7 @@ fn is_start_with_vowel(my_str:  &String)->bool{
 
 fn pig_latin(my_str: &mut String) {
     let mut ends = String::new();
-    let mut heads = String::new();
+    let heads:String;
     
     if !is_start_with_vowel(my_str) {
         ends = format!("{}{}", my_str.chars().next().unwrap(), "ay");
