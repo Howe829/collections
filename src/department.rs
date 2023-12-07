@@ -4,41 +4,29 @@ use std::vec::Vec;
 
 
 fn handle_list_request(text: &mut String, company:&mut HashMap<String, Vec<String>>) {
-    let splits = text.split_whitespace();
-    let mut count = 0;
-    let mut department:String = String::new();
-    for (i, value) in splits.enumerate() {
-        if i == 1 {
-            department = value.to_string();
-        }
-        count += 1;
-    }
-    if count != 2{
+    
+    let words:Vec<String> = text.split_whitespace().map(|word| word.to_string()).collect();
+    
+    if words.len() != 2{
         println!("Wrong Input!Please enter 2 letters seperated by whitespace");
         return;
     }
-    let names = company.get(&department).unwrap();
+    let department = words[1].clone();
+    let names = company.get(&words[1]).unwrap();
     println!("{} {:?}", department, names);
 
 }
 fn handle_add_request(text: &mut String, company:&mut HashMap<String, Vec<String>>) {
     
-    let splits = text.split_whitespace();
-    let mut count = 0;
-    let mut name:String = String::new();
-    let mut department:String = String::new();
-    for (i, value) in splits.enumerate() {
-        if i == 1 {
-            name = value.to_string();
-        }else if i == 3 {
-            department = value.to_string();
-        }
-        count += 1;
-    }
-    if count !=4 {
+    
+    let words:Vec<String> = text.split_whitespace().map(|word| word.to_string()).collect();
+
+    if words.len() != 4 {
         println!("Wrong Input!Please enter 4 letters seperated by whitespace");
         return;
     }
+    let department = words[3].clone();
+    let name = words[1].clone();
     let com_department = company.entry(department).or_insert(vec![]);
     com_department.push(name);    
 }
