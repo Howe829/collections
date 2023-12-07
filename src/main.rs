@@ -52,7 +52,7 @@ fn pig_latin(my_str: &mut String) {
 
 fn bubble_sort(numbers: &mut Vec<i32>){
    for i in 0..numbers.len(){
-       for j in 0..numbers.len(){
+       for j in i..numbers.len(){
            if numbers[i] < numbers[j] {
               let temp = numbers[i];
               numbers[i] = numbers[j];
